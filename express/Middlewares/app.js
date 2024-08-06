@@ -8,16 +8,17 @@ const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const contactRoutes = require('./routes/contact');
 
+
+const {notFound} = require('./controllers/notFound');
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/admin', adminRoutes);
 app.use('/shop', shopRoutes);
+app.use('/admin', adminRoutes);
 app.use(contactRoutes);
 
-app.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
-});
+app.use(notFound);
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');

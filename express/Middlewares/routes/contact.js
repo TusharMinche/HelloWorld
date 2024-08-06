@@ -5,17 +5,12 @@ const rootDir = require('../util/path');
 
 const router = express.Router();
 
-router.get('/contactus', (req, res) => {
-    res.sendFile(path.join(rootDir, 'views', 'contact.html'));
-});
+const {getContactUs, postContactUs, success} = require('../controllers/contact');
 
-router.post('/contactus', (req, res) => {
-    console.log(req.body);
-    res.redirect('/success');
-});
+router.get('/contactus', getContactUs);
 
-router.get('/success', (req, res) => {
-    res.sendFile(path.join(rootDir, 'views', 'success.html'));
-});
+router.post('/contactus', postContactUs);
+
+router.get('/success', success);
 
 module.exports = router;
