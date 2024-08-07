@@ -5,7 +5,9 @@ const rootDir = require('../util/path');
 
 const router = express.Router();
 
-const {home} = require('../controllers/home');
+const {home, getProduct} = require('../controllers/home');
+
+router.get('/product/:productId', getProduct);
 
 router.get('/', home);
 
